@@ -23,10 +23,14 @@ export const FavoritesList = clientEntry(
     handle.signal.addEventListener('abort', unsubscribe)
 
     return () => {
-      if (list.length === 0) return <div hidden />
       const today = todayISO()
+      const empty = list.length === 0
       return (
-        <section mix={wrapStyle} aria-label="Favorite rides">
+        <section
+          mix={wrapStyle}
+          aria-label="Favorite rides"
+          style={{ display: empty ? 'none' : undefined }}
+        >
           <div mix={headerStyle}>
             <span mix={starStyle} aria-hidden>
               ★

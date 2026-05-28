@@ -28,11 +28,11 @@ export function Document() {
           rel="stylesheet"
           href="https://unpkg.com/maplibre-gl@5.24.0/dist/maplibre-gl.css"
         />
-        <script src="https://unpkg.com/maplibre-gl@5.24.0/dist/maplibre-gl.js"></script>
         <title>{title}</title>
         {head}
       </head>
       <body mix={bodyStyle}>
+        <script src="https://unpkg.com/maplibre-gl@5.24.0/dist/maplibre-gl.js"></script>
         <header mix={headerStyle}>
           <a href="/" mix={brandStyle}>
             <span mix={brandMarkStyle} aria-hidden>

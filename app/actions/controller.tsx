@@ -34,8 +34,9 @@ export default createController(routes, {
       const toId = url.searchParams.get('to') ?? ''
       const date = url.searchParams.get('date') ?? ''
 
+      // Missing params → send user back to the search form instead of a 400.
       if (!fromId || !toId || !date) {
-        return new Response('Missing from, to or date', { status: 400 })
+        return new Response(null, { status: 303, headers: { Location: '/' } })
       }
 
       const [fromStation, toStation] = await Promise.all([
@@ -135,11 +136,11 @@ export default createController(routes, {
       const fromId = url.searchParams.get('from') ?? ''
       const toId = url.searchParams.get('to') ?? ''
       const date = url.searchParams.get('date') ?? ''
-      if (!tripId) return new Response('Missing trip id', { status: 400 })
+      if (!tripId) {
+        return new Response(null, { status: 303, headers: { Location: '/' } })
+      }
       if (!fromId || !toId || !date) {
-        return new Response('Trip detail requires from, to, and date in the URL.', {
-          status: 400,
-        })
+        return new Response(null, { status: 303, headers: { Location: '/' } })
       }
 
       const [fromStation, toStation, schedule] = await Promise.all([
