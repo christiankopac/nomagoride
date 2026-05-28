@@ -101,6 +101,8 @@ server.ts                        Node HTTP entry: createRequestListener(router.f
 
 The app deploys to Fly.io as a single Docker container running the Node server. Region defaults to `fra` (Frankfurt — closest to Slovenia).
 
+The `fly.toml` is tuned for Fly's hobby-tier credit: a single `shared-cpu-1x` VM with 256 MB RAM, `min_machines_running = 0`, and `auto_stop_machines = "stop"` — the app idles at zero machines and only spins up on the first request. First request after idle has a small cold start (~1–3s); after that it serves normally until traffic drops again.
+
 **One-time setup:**
 
 ```bash
