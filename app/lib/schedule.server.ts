@@ -1,7 +1,7 @@
 import * as cheerio from "cheerio";
 import { z } from "zod";
-import { TTLCache } from "./cache.server";
-import { hhmmToMinutes } from "./format";
+import { TTLCache } from "./cache.server.ts";
+import { hhmmToMinutes } from "./format.ts";
 
 const RESULTS_URL = "https://vozovnice.nomago.si/results/vozni-red";
 
