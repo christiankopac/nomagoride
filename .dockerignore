@@ -1,0 +1,16 @@
+node_modules
+.git
+.github
+.cache
+build
+dist
+.env
+.DS_Store
+*.log
+.vscode
+.idea
+README.md
+tsconfig.tsbuildinfo
+ruvector.db
+.agents
+AGENTS.md
