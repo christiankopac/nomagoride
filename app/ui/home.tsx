@@ -3,6 +3,7 @@ import { css } from 'remix/ui'
 import { todayISO } from '../lib/format.ts'
 import { Document } from './document.tsx'
 import { StationCombobox } from '../assets/station-combobox.tsx'
+import { FavoritesList } from '../assets/favorites-list.tsx'
 
 export interface HomePageProps {
   initialFromId: string
@@ -29,6 +30,8 @@ export function HomePage() {
             cards, no carousels, no nonsense.
           </p>
         </section>
+
+        <FavoritesList />
 
         <form action="/schedule" method="get" mix={searchCardStyle}>
           <div mix={rowStyle}>

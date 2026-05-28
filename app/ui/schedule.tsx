@@ -3,6 +3,8 @@ import { css } from 'remix/ui'
 import type { ScheduleEntry as Entry } from '../lib/schedule.server.ts'
 import { formatDurationMinutes, shiftISO } from '../lib/format.ts'
 import { Document } from './document.tsx'
+import { RouteMap } from '../assets/route-map.tsx'
+import { SaveRouteButton } from '../assets/save-route-button.tsx'
 
 export interface MapPoint {
   name: string
@@ -60,19 +62,27 @@ export function SchedulePage() {
               </a>
             </div>
           </div>
-          <form action="/" method="get">
-            <input type="hidden" name="from" value={fromStation.id} />
-            <input type="hidden" name="to" value={toStation.id} />
-            <input type="hidden" name="date" value={date} />
-            <button type="submit" mix={outlineButtonStyle}>
-              Edit search
-            </button>
-          </form>
+          <div mix={headerActionsStyle}>
+            <SaveRouteButton
+              fromId={fromStation.id}
+              fromName={fromStation.name}
+              toId={toStation.id}
+              toName={toStation.name}
+            />
+            <form action="/" method="get">
+              <input type="hidden" name="from" value={fromStation.id} />
+              <input type="hidden" name="to" value={toStation.id} />
+              <input type="hidden" name="date" value={date} />
+              <button type="submit" mix={outlineButtonStyle}>
+                Edit search
+              </button>
+            </form>
+          </div>
         </header>
 
         {routeStops.length >= 2 ? (
           <div mix={mapPlaceholderStyle} aria-label="Route preview">
-            <RoutePreviewSVG points={routeStops} />
+            <RouteMap pointsJson={JSON.stringify(routeStops)} height={224} />
           </div>
         ) : null}
 
@@ -169,7 +179,13 @@ function EntryRow() {
   }
 }
 
-function RoutePreviewSVG() {
+const headerActionsStyle = css({
+  display: 'flex',
+  alignItems: 'center',
+  gap: '8px',
+})
+
+function _UNUSED_RoutePreviewSVG() {
   return ({ points }: { points: MapPoint[] }) => {
     if (points.length < 2) return null
     const lats = points.map((p) => p.latitude)

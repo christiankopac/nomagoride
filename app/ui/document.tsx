@@ -24,6 +24,11 @@ export function Document() {
           rel="stylesheet"
           href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&family=Geist+Mono:wght@100..900&display=swap"
         />
+        <link
+          rel="stylesheet"
+          href="https://unpkg.com/maplibre-gl@5.24.0/dist/maplibre-gl.css"
+        />
+        <script src="https://unpkg.com/maplibre-gl@5.24.0/dist/maplibre-gl.js"></script>
         <title>{title}</title>
         {head}
       </head>

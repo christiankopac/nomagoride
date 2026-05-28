@@ -3,6 +3,7 @@ import { css } from 'remix/ui'
 import type { ScheduleEntry as Entry } from '../lib/schedule.server.ts'
 import { formatDurationMinutes } from '../lib/format.ts'
 import { Document } from './document.tsx'
+import { RouteMap } from '../assets/route-map.tsx'
 
 export interface MapPoint {
   name: string
@@ -71,7 +72,7 @@ export function TripPage() {
 
       {mapPoints.length >= 2 ? (
         <section mix={mapCardStyle} aria-label="Route map">
-          <RoutePreview points={mapPoints} />
+          <RouteMap pointsJson={JSON.stringify(mapPoints)} height={360} />
         </section>
       ) : null}
 
