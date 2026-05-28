@@ -43,7 +43,7 @@ export const FavoritesList = clientEntry(
               const href = `/schedule?from=${encodeURIComponent(f.from.id)}&to=${encodeURIComponent(f.to.id)}&date=${today}`
               return (
                 <li key={`${f.from.id}-${f.to.id}`} mix={pillStyle}>
-                  <a href={href} mix={pillLinkStyle}>
+                  <a href={href} rmx-document="" mix={pillLinkStyle}>
                     <span>{f.from.name}</span>
                     <span mix={arrowStyle} aria-hidden>
                       →

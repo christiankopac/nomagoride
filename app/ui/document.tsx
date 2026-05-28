@@ -34,7 +34,7 @@ export function Document() {
       <body mix={bodyStyle}>
         <script src="https://unpkg.com/maplibre-gl@5.24.0/dist/maplibre-gl.js"></script>
         <header mix={headerStyle}>
-          <a href="/" mix={brandStyle}>
+          <a href="/" rmx-document="" mix={brandStyle}>
             <span mix={brandMarkStyle} aria-hidden>
               N
             </span>

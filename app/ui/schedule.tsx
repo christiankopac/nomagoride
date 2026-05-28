@@ -51,13 +51,13 @@ export function SchedulePage() {
               <span>{toStation.name}</span>
             </h1>
             <div mix={dayNavStyle}>
-              <a href={linkFor(prevDay)} mix={dayBtnStyle} aria-label="Previous day">
+              <a href={linkFor(prevDay)} rmx-document="" mix={dayBtnStyle} aria-label="Previous day">
                 ←
               </a>
               <span className="mono" mix={dayLabelStyle}>
                 {date}
               </span>
-              <a href={linkFor(nextDay)} mix={dayBtnStyle} aria-label="Next day">
+              <a href={linkFor(nextDay)} rmx-document="" mix={dayBtnStyle} aria-label="Next day">
                 →
               </a>
             </div>
@@ -141,7 +141,7 @@ function EntryRow() {
   }) => {
     const href = `/trip/${encodeURIComponent(entry.tripId)}?from=${encodeURIComponent(fromId)}&to=${encodeURIComponent(toId)}&date=${encodeURIComponent(date)}`
     return (
-      <a href={href} mix={entryStyle}>
+      <a href={href} rmx-document="" mix={entryStyle}>
         <div mix={timeSideStyle}>
           <div className="mono" mix={timeStyle}>
             {entry.departure.time}

@@ -24,7 +24,7 @@ export function TripPage() {
     <Document
       title={`${entry.departure.city} → ${entry.arrival.city} · ${entry.departure.time}`}
     >
-      <a href={backHref} mix={backStyle}>
+      <a href={backHref} rmx-document="" mix={backStyle}>
         ← Back to schedule
       </a>
 
