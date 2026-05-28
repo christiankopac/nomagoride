@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Form, useLoaderData, useNavigation } from "@remix-run/react";
-import type { LoaderFunctionArgs, MetaFunction } from "@remix-run/node";
+import type { LoaderFunctionArgs, MetaFunction } from "@remix-run/cloudflare";
 import { ArrowLeftRight, Brain, Frown, Leaf, Search, Sparkles } from "lucide-react";
 import { findById } from "~/lib/stations.server";
 import { todayISO } from "~/lib/format";

@@ -64,11 +64,31 @@ Other scripts:
 
 ```bash
 npm run typecheck   # tsc -b
-npm run build       # remix vite:build
-npm run start       # remix-serve ./build/server/index.js
+npm run build       # remix vite:build (outputs build/client + build/server)
+npm run preview     # wrangler pages dev — preview the Cloudflare build locally
+npm run deploy      # npm run build && wrangler pages deploy
 ```
 
 Requires Node 20+.
+
+## Deploying to Cloudflare Pages
+
+The app is configured for Cloudflare Pages with a Pages Function (`functions/[[path]].ts`) that runs the Remix server on Workers. There's no Node server to host — Cloudflare's edge takes care of it.
+
+**One-time setup:**
+
+1. `npx wrangler login` (opens browser, auths your Cloudflare account).
+2. Create the Pages project: `npx wrangler pages project create nomagoride --production-branch=main`.
+3. Deploy: `npm run deploy`.
+
+**Continuous deploy via GitHub Actions** — `.github/workflows/deploy.yml` builds and ships on every push to `main`. Add two repo secrets first:
+
+| Secret | Where to find it |
+| --- | --- |
+| `CLOUDFLARE_API_TOKEN` | Cloudflare dashboard → My Profile → API Tokens → Create Token → "Edit Cloudflare Workers" template. |
+| `CLOUDFLARE_ACCOUNT_ID` | Cloudflare dashboard → Workers & Pages → overview page (right sidebar). |
+
+Once those are set, `git push origin main` deploys.
 
 ## Project layout
 

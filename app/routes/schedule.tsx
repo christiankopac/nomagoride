@@ -1,6 +1,6 @@
 import { useMemo, useState } from "react";
 import { Form, Link, useLoaderData, useNavigation } from "@remix-run/react";
-import type { LoaderFunctionArgs, MetaFunction } from "@remix-run/node";
+import type { LoaderFunctionArgs, MetaFunction } from "@remix-run/cloudflare";
 import { ArrowRight, ChevronLeft, ChevronRight, Pencil } from "lucide-react";
 import { findById, findByName } from "~/lib/stations.server";
 import { getSchedule, ScrapeShapeChanged } from "~/lib/schedule.server";

@@ -1,5 +1,5 @@
 import { Link, useLoaderData } from "@remix-run/react";
-import type { LoaderFunctionArgs, MetaFunction } from "@remix-run/node";
+import type { LoaderFunctionArgs, MetaFunction } from "@remix-run/cloudflare";
 import { ArrowLeft, ArrowRight, Clock } from "lucide-react";
 import { findById, findByName } from "~/lib/stations.server";
 import { getSchedule } from "~/lib/schedule.server";

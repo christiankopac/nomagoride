@@ -1,4 +1,4 @@
-import type { LoaderFunctionArgs } from "@remix-run/node";
+import type { LoaderFunctionArgs } from "@remix-run/cloudflare";
 import { search } from "~/lib/stations.server";
 
 export async function loader({ request }: LoaderFunctionArgs) {

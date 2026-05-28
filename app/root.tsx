@@ -8,7 +8,7 @@ import {
   useRouteError,
   Link,
 } from "@remix-run/react";
-import type { LinksFunction } from "@remix-run/node";
+import type { LinksFunction } from "@remix-run/cloudflare";
 import { Bus } from "lucide-react";
 
 import tailwindHref from "./tailwind.css?url";
