@@ -97,11 +97,30 @@ public/
 server.ts                        Node HTTP entry: createRequestListener(router.fetch)
 ```
 
-## Deploying
+## Deploying to Fly.io
 
-The current entry is a Node server (`server.ts`) — ship it anywhere that runs Node 24+ (Fly.io, Railway, Render, a small VPS).
+The app deploys to Fly.io as a single Docker container running the Node server. Region defaults to `fra` (Frankfurt — closest to Slovenia).
 
-Cloudflare Workers can run `router.fetch()` directly (the router is fetch-API-shaped), but the asset pipeline (`createAssetServer`) and `staticFiles('./public')` middleware both touch the filesystem, so a Workers deploy needs a custom adapter that serves pre-built assets via Cloudflare's static bindings. That work isn't done yet.
+The `fly.toml` is tuned for Fly's hobby-tier credit: a single `shared-cpu-1x` VM with 256 MB RAM, `min_machines_running = 0`, and `auto_stop_machines = "stop"` — the app idles at zero machines and only spins up on the first request. First request after idle has a small cold start (~1–3s); after that it serves normally until traffic drops again.
+
+**One-time setup:**
+
+```bash
+brew install flyctl                # or: curl -L https://fly.io/install.sh | sh
+flyctl auth login
+flyctl launch --no-deploy --copy-config   # picks up fly.toml, creates the app
+flyctl deploy
+```
+
+**Continuous deploy via GitHub Actions** — `.github/workflows/deploy.yml` builds and ships on every push to `main` via `flyctl deploy --remote-only`. Add one secret to the repo first:
+
+| Secret | Where to find it |
+| --- | --- |
+| `FLY_API_TOKEN` | `flyctl auth token` (or Fly dashboard → Account → Access tokens) |
+
+Once that's set, `git push origin main` deploys.
+
+**Why not Cloudflare?** Remix 3's runtime asset pipeline (`createAssetServer`) compiles client entries on demand via Node's filesystem, which doesn't run in Workers/Pages. A Cloudflare deploy would need a custom build step + a static-asset manifest + a `_worker.js` entry, which isn't built yet.
 
 ## Theme
 
